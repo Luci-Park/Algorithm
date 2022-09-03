@@ -1,0 +1,21 @@
+https://school.programmers.co.kr/learn/courses/30/lessons/77484
+
+#include <vector>
+
+using namespace std;
+int Rank(int match){
+    return match >= 2 ? 7 - match : 6;
+}
+vector<int> solution(vector<int> lottos, vector<int> win_nums) {
+    vector<int> answer;
+    int num [46] = {0, };
+    int matchNum = 0;
+    for(int l: lottos) num[l] += 1;
+    for(int w: win_nums){
+        if(num[w]) 
+            matchNum +=1;
+    }
+    answer.push_back(Rank(matchNum + num[0]));
+    answer.push_back(Rank(matchNum));
+    return answer;
+}

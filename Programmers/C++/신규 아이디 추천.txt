@@ -1,0 +1,28 @@
+//https://school.programmers.co.kr/learn/courses/30/lessons/72410
+
+#include <string>
+#include <vector>
+#include <string.h>
+using namespace std;
+
+string solution(string new_id) {
+    string answer = "";
+    for(string::iterator it = new_id.begin(); it != new_id.end(); ++it){
+        if(!isalnum(*it) && !strchr(".-_", *it)) continue;
+           
+        if(*it == '.' && (answer.empty()||answer.back() == '.')) continue;
+           
+        if(isalpha(*it)) *it = tolower(*it);
+        answer += *it;
+    }
+    answer = answer.substr(0, 15);
+
+    answer = answer.back() == '.'? answer.substr(0, answer.length()-1) :answer;
+    
+    if(answer.length() <= 2){
+        if(answer.empty()) answer = 'a';
+        answer += string(3-answer.length(), *(answer.end()-1));
+    }    
+    
+    return answer;
+}

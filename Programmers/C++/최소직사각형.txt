@@ -1,0 +1,18 @@
+//https://school.programmers.co.kr/learn/courses/30/lessons/86491
+
+#include <string>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+int solution(vector<vector<int>> sizes) {
+    int answer = 0;
+    int wmax = 0, hmax = 0;
+    for(auto s:sizes){
+        int w = min(s[0], s[1]);
+        int h = max(s[0], s[1]);
+        if(wmax < w) wmax = w;
+        if(hmax < h) hmax = h;
+    }
+    return wmax * hmax;
+}
